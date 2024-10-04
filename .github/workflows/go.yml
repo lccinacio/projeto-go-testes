@@ -3,16 +3,7 @@
 
 name: Go
 
-on:
-  push:
-    branches: ["main"]
-
-  workflow_dispatch:
-  inputs: 
-    cli:
-      description: Run Go Tests
-      required: true
-      default: o test -v main_test.go
+on: [push]
 
 jobs:
 
@@ -33,9 +24,7 @@ jobs:
       run: docker compose up -d 
 
     - name: Test
-      with:
-        cli: ${{ inputs.cli }}
-
+      run: go test -v main_test.go
 
   build:
     needs: test
