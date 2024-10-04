@@ -4,10 +4,15 @@
 name: Go
 
 on:
+  push:
+    branches: ["main"]
+
   workflow_dispatch:
   inputs: 
-    cli: go test -v main_test.go
-    
+    description: Run Go Tests
+    required: true
+    default: o test -v main_test.go
+
 jobs:
 
   test:
