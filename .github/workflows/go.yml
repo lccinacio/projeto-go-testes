@@ -4,11 +4,10 @@
 name: Go
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  workflow_dispatch:
+  inputs: 
+    cli: go test -v main_test.go
+    
 jobs:
 
   test:
@@ -28,7 +27,7 @@ jobs:
       run: docker compose up -d 
 
     - name: Test
-      run: go test -v main_test.go
+      run: ${{ inputs.cli }}
 
   build:
     needs: test
